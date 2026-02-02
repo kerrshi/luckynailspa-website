@@ -1,0 +1,25 @@
+{
+  "name": "lucky-nail-spa-website",
+  "version": "1.0.0",
+  "description": "Lucky Nail Spa website - Premium nail care services in Durham, NC",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "nail-salon",
+    "spa",
+    "durham",
+    "website"
+  ],
+  "author": "Lucky Nail Spa",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.x"
+  },
+  "devDependencies": {
+    "vercel": "^34.0.0"
+  }
+}
+
+
