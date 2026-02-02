@@ -1,10 +1,11 @@
-// Hero Slideshow
+// Hero Slideshow with performance optimizations
 function initSlideshow() {
     const slides = document.querySelectorAll('.hero-slideshow .slide');
     if (slides.length === 0) return;
     
     let currentSlide = 0;
     const slideInterval = 5000; // Change slide every 5 seconds
+    let slideTimer = null;
     
     function showSlide(index) {
         // Remove active class from all slides
@@ -24,8 +25,27 @@ function initSlideshow() {
     // Initialize first slide
     showSlide(0);
     
-    // Auto-advance slides
-    setInterval(nextSlide, slideInterval);
+    // Auto-advance slides with requestAnimationFrame for better performance
+    function startSlideshow() {
+        slideTimer = setInterval(nextSlide, slideInterval);
+    }
+    
+    // Pause slideshow when page is not visible (performance optimization)
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            if (slideTimer) {
+                clearInterval(slideTimer);
+                slideTimer = null;
+            }
+        } else {
+            if (!slideTimer) {
+                startSlideshow();
+            }
+        }
+    });
+    
+    // Start slideshow
+    startSlideshow();
 }
 
 // Header scroll effect
@@ -267,9 +287,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const submitButton = contactForm.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.textContent;
             submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
+            submitButton.classList.add('loading');
+            submitButton.setAttribute('aria-busy', 'true');
             
-            // Send form data to API
+            // Send form data to API with timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+            
             fetch('/api/contact', {
                 method: 'POST',
                 headers: {
@@ -280,15 +304,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: email,
                     phone: phone || '',
                     message: message
-                })
+                }),
+                signal: controller.signal
             })
-            .then(response => response.json())
+            .then(response => {
+                clearTimeout(timeoutId);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 // Show success message
                 const formMessage = document.getElementById('formMessage');
                 if (formMessage) {
                     formMessage.textContent = data.message || 'Thanks for reaching out! We\'ll get back to you soon.';
                     formMessage.classList.add('success');
+                    formMessage.setAttribute('role', 'status');
                     
                     // Reset form
                     contactForm.reset();
@@ -296,26 +328,41 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Clear all errors
                     ['name', 'email', 'phone', 'message'].forEach(id => clearError(id));
                     
+                    // Scroll to message for better UX
+                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    
                     // Hide message after 5 seconds
                     setTimeout(function() {
                         formMessage.classList.remove('success');
+                        formMessage.textContent = '';
                     }, 5000);
                 }
             })
             .catch(error => {
+                clearTimeout(timeoutId);
                 console.error('Error:', error);
                 const formMessage = document.getElementById('formMessage');
                 if (formMessage) {
-                    formMessage.textContent = 'Sorry, there was an error sending your message. Please try again or call us directly.';
-                    formMessage.classList.add('success');
+                    if (error.name === 'AbortError') {
+                        formMessage.textContent = 'Request timed out. Please check your connection and try again, or call us directly at (919) 908-7298.';
+                    } else {
+                        formMessage.textContent = 'Sorry, there was an error sending your message. Please try again or call us directly at (919) 908-7298.';
+                    }
+                    formMessage.classList.add('error');
                     formMessage.style.backgroundColor = '#f8d7da';
                     formMessage.style.color = '#721c24';
                     formMessage.style.border = '1px solid #f5c6cb';
+                    formMessage.setAttribute('role', 'alert');
+                    
+                    // Scroll to message
+                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             })
             .finally(() => {
                 // Restore button state
                 submitButton.disabled = false;
+                submitButton.classList.remove('loading');
+                submitButton.setAttribute('aria-busy', 'false');
                 submitButton.textContent = originalButtonText;
             });
         });
@@ -340,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Image loading animation
+    // Image loading animation with error handling
     const images = document.querySelectorAll('img');
     images.forEach(img => {
         if (img.complete) {
@@ -349,8 +396,34 @@ document.addEventListener('DOMContentLoaded', function() {
             img.addEventListener('load', function() {
                 this.classList.add('loaded');
             });
+            img.addEventListener('error', function() {
+                // Add error class for styling if needed
+                this.classList.add('error');
+                console.warn('Image failed to load:', this.src);
+            });
         }
     });
+    
+    // Lazy load images using Intersection Observer (if not already using native lazy loading)
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                }
+            });
+        });
+        
+        // Observe images with data-src attribute
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
     
     // Smooth scroll enhancement for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

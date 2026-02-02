@@ -24,9 +24,18 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/clover-icon.png">
+    <link rel="apple-touch-icon" href="assets/clover-icon.png">
     
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://booking.gocheckin.net">
+    <link rel="dns-prefetch" href="https://www.google.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="assets/clover-icon.png" as="image">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     
@@ -36,7 +45,10 @@
       "@context": "https://schema.org",
       "@type": "BeautySalon",
       "name": "Lucky Nail Spa",
-      "image": "https://www.luckynailspadurham.com/assets/clover-icon.png",
+      "image": [
+        "https://www.luckynailspadurham.com/assets/clover-icon.png",
+        "https://www.luckynailspadurham.com/assets/shop1.jpg"
+      ],
       "description": "Premium nail care services including manicures, pedicures, nail extensions, nail art, and waxing services in Durham, NC.",
       "address": {
         "@type": "PostalAddress",
@@ -46,24 +58,159 @@
         "postalCode": "27707",
         "addressCountry": "US"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "35.9681",
+        "longitude": "-78.9014"
+      },
       "telephone": "(919) 908-7298",
       "email": "contact@luckynailspadurham.com",
       "url": "https://www.luckynailspadurham.com",
       "priceRange": "$$",
       "areaServed": {
         "@type": "City",
-        "name": "Durham"
-      }
+        "name": "Durham",
+        "sameAs": "https://en.wikipedia.org/wiki/Durham,_North_Carolina"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:30",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "10:00",
+          "closes": "18:00"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Nail Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Manicure",
+              "description": "Professional hand care with nail shaping, cuticle care, hand massage, and polish application"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Pedicure",
+              "description": "Foot care with nail trimming, cuticle grooming, sugar scrub exfoliating, and polish"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Nail Extensions",
+              "description": "Acrylic, gel, and dip powder nail extensions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Nail Art",
+              "description": "Custom nail art designs and patterns"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Waxing Services",
+              "description": "Professional waxing services for face and body"
+            }
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "3",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Alison Arnold"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "This place is wonderful, gentle, inviting and clean! They're still new and definitely worth checking out! The nail tech was so gentle, helped ease my anxiety and did such a wonderful job!"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Jessica Endicott"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "I decided a little while back that I wanted to get my nails done again and I am new to the area. Lucky nails was the first place I have gone to and I have loved their work! Perfect!"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Inesa L."
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "Just what I expect from a nail SPA! From the moment you walk in, you are greeted warmly, the staff is organized and I did not have to wait to be seen. Everything in this place is meticulously clean and the technicians do an excellent job!"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com",
+        "https://www.instagram.com",
+        "https://www.yelp.com"
+      ]
     }
     </script>
+    
+    <!-- Google Analytics placeholder - Replace with your tracking ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script> -->
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="index.html" class="logo-link">
-                    <img src="assets/clover-icon.png" alt="Lucky Nail Spa" class="logo-icon">
+                <a href="index.html" class="logo-link" aria-label="Lucky Nail Spa Home">
+                    <img src="assets/clover-icon.png" alt="Lucky Nail Spa Logo" class="logo-icon" width="50" height="50">
                     <span class="logo-text">Lucky Nail Spa</span>
                 </a>
             </div>
@@ -93,16 +240,16 @@
         <section id="home" class="hero">
             <div class="hero-slideshow">
                 <div class="slide active">
-                    <img src="assets/shop1.jpg" alt="Lucky Nail Spa beautiful interior and workspace" loading="eager">
+                    <img src="assets/shop1.jpg" alt="Lucky Nail Spa beautiful interior and workspace" loading="eager" width="1920" height="1080" fetchpriority="high">
                 </div>
                 <div class="slide">
-                    <img src="assets/shop2.jpg" alt="Lucky Nail Spa salon interior" loading="lazy">
+                    <img src="assets/shop2.jpg" alt="Lucky Nail Spa salon interior" loading="lazy" width="1920" height="1080">
                 </div>
                 <div class="slide">
-                    <img src="assets/shop3.jpg" alt="Lucky Nail Spa clean and modern workspace" loading="lazy">
+                    <img src="assets/shop3.jpg" alt="Lucky Nail Spa clean and modern workspace" loading="lazy" width="1920" height="1080">
                 </div>
                 <div class="slide">
-                    <img src="assets/shop4.jpg" alt="Lucky Nail Spa welcoming salon environment" loading="lazy">
+                    <img src="assets/shop4.jpg" alt="Lucky Nail Spa welcoming salon environment" loading="lazy" width="1920" height="1080">
                 </div>
             </div>
             <div class="hero-container">
@@ -136,37 +283,37 @@
                 <p class="section-intro">Browse our gallery of beautiful nail designs and transformations</p>
                 <div class="nail-gallery">
                     <div class="gallery-item">
-                        <img src="assets/nail-gallery-1.webp" alt="Beautiful nail art design with intricate patterns" loading="lazy">
+                        <img src="assets/nail-gallery-1.webp" alt="Beautiful nail art design with intricate patterns" loading="lazy" width="400" height="400">
                         <div class="gallery-overlay">
                             <p>Elegant Nail Art</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/nail-gallery-2.webp" alt="Colorful nail art with creative designs" loading="lazy">
+                        <img src="assets/nail-gallery-2.webp" alt="Colorful nail art with creative designs" loading="lazy" width="400" height="400">
                         <div class="gallery-overlay">
                             <p>Creative Designs</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/nail-gallery-3.jpg" alt="Professional nail extensions and styling" loading="lazy">
+                        <img src="assets/nail-gallery-3.jpg" alt="Professional nail extensions and styling" loading="lazy" width="400" height="400">
                         <div class="gallery-overlay">
                             <p>Nail Extensions</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/nail-gallery-4.png" alt="Detailed manicure work with precision" loading="lazy">
+                        <img src="assets/nail-gallery-4.png" alt="Detailed manicure work with precision" loading="lazy" width="400" height="400">
                         <div class="gallery-overlay">
                             <p>Precision Manicure</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/nail-gallery-5.jpg" alt="Stunning nail art and designs" loading="lazy">
+                        <img src="assets/nail-gallery-5.jpg" alt="Stunning nail art and designs" loading="lazy" width="400" height="400">
                         <div class="gallery-overlay">
                             <p>Beautiful Nail Art</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/nail-gallery-6.jpg" alt="Professional nail work showcase" loading="lazy">
+                        <img src="assets/nail-gallery-6.jpg" alt="Professional nail work showcase" loading="lazy" width="400" height="400">
                         <div class="gallery-overlay">
                             <p>Professional Work</p>
                         </div>
@@ -196,7 +343,7 @@
                         </ul>
                     </div>
                     <div class="about-image">
-                        <img src="assets/about-salon.jpg" alt="Calm and welcoming nail salon interior">
+                        <img src="assets/about-salon.jpg" alt="Calm and welcoming nail salon interior" loading="lazy" width="600" height="400">
                     </div>
                 </div>
             </div>
@@ -312,29 +459,29 @@
                     </div>
                 </div>
                 <div class="contact-form-container">
-                    <form id="contactForm" class="contact-form">
+                    <form id="contactForm" class="contact-form" novalidate aria-label="Contact form">
                         <div class="form-group">
-                            <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" required aria-required="true">
-                            <span class="error-message" id="nameError"></span>
+                            <label for="name">Name <span class="required" aria-label="required">*</span></label>
+                            <input type="text" id="name" name="name" required aria-required="true" aria-describedby="nameError" autocomplete="name">
+                            <span class="error-message" id="nameError" role="alert" aria-live="polite"></span>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" required aria-required="true">
-                            <span class="error-message" id="emailError"></span>
+                            <label for="email">Email <span class="required" aria-label="required">*</span></label>
+                            <input type="email" id="email" name="email" required aria-required="true" aria-describedby="emailError" autocomplete="email">
+                            <span class="error-message" id="emailError" role="alert" aria-live="polite"></span>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" pattern="[0-9\-\(\)\s]+">
-                            <span class="error-message" id="phoneError"></span>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9\-\(\)\s]+" aria-describedby="phoneError" autocomplete="tel">
+                            <span class="error-message" id="phoneError" role="alert" aria-live="polite"></span>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message <span class="required">*</span></label>
-                            <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
-                            <span class="error-message" id="messageError"></span>
+                            <label for="message">Message <span class="required" aria-label="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" required aria-required="true" aria-describedby="messageError"></textarea>
+                            <span class="error-message" id="messageError" role="alert" aria-live="polite"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                        <p id="formMessage" class="form-message"></p>
+                        <button type="submit" class="btn btn-primary" aria-label="Submit contact form">Send Message</button>
+                        <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
                     </form>
                 </div>
                 <div class="map-container">
