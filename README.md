@@ -105,3 +105,4 @@ Works in all modern browsers (Chrome, Firefox, Safari, Edge).
 - The contact form API endpoint is ready but needs email service configuration
 - All images should be optimized for web
 - The site is fully configured for Vercel deployment
+# luckynailspa-website
