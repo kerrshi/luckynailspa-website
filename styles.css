@@ -2548,3 +2548,138 @@ footer::before {
         font-size: 0.9rem;
     }
 }
+
+/* ── Trust Bar ─────────────────────────────────────── */
+.trust-bar {
+    background: var(--surface);
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 1rem 0;
+}
+
+.trust-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-medium);
+    white-space: nowrap;
+}
+
+.trust-stars {
+    color: #d4a017;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.trust-divider {
+    width: 1px;
+    height: 1.25rem;
+    background: var(--border-soft);
+    flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    .trust-bar-inner {
+        gap: 0.75rem;
+    }
+    .trust-divider {
+        display: none;
+    }
+    .trust-item {
+        font-size: 0.82rem;
+    }
+}
+
+/* ── Service Icon Badges ────────────────────────────── */
+.services-icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0 2.5rem;
+}
+
+.service-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--border-radius);
+    padding: 1.25rem 1.5rem;
+    min-width: 110px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.service-badge:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-light);
+    background: var(--accent-color);
+}
+
+.service-badge-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+@media (max-width: 480px) {
+    .services-icon-grid {
+        gap: 0.75rem;
+    }
+    .service-badge {
+        min-width: 90px;
+        padding: 1rem 1rem;
+        font-size: 0.82rem;
+    }
+    .service-badge-icon {
+        font-size: 1.5rem;
+    }
+}
+
+/* ── Testimonial Star Ratings ───────────────────────── */
+.stars {
+    color: #d4a017;
+    font-size: 1.35rem;
+    letter-spacing: 3px;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+/* ── Contact Card Icons ─────────────────────────────── */
+.contact-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: var(--primary-dark);
+    transition: var(--transition);
+    border: 1px solid var(--border-soft);
+}
+
+.contact-card:hover .contact-icon {
+    background: var(--primary-dark);
+    color: #ffffff;
+    border-color: var(--primary-dark);
+    transform: scale(1.08);
+}
