@@ -70,27 +70,46 @@ function initHeaderScroll() {
 // Intersection Observer for fade-in animations
 function initScrollAnimations() {
     const sections = document.querySelectorAll('section');
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    // Fallback: if IntersectionObserver isn't available, reveal everything.
+    if (!('IntersectionObserver' in window)) {
+        sections.forEach(section => section.classList.add('visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver(function(entries, obs) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-    
-    sections.forEach(section => {
-        observer.observe(section);
+    }, {
+        // threshold 0 so sections taller than the viewport (e.g. the mobile
+        // services menu, which stacks into one very tall column) still
+        // trigger as soon as any part enters view. Positive bottom margin
+        // reveals each section just before it scrolls in, so even the last
+        // section on the page always triggers.
+        threshold: 0,
+        rootMargin: '0px 0px 100px 0px'
     });
-    
-    // Make first section visible immediately
+
+    sections.forEach(section => observer.observe(section));
+
+    // Reveal the first section immediately.
     if (sections.length > 0) {
         sections[0].classList.add('visible');
     }
+
+    // Failsafe: never let content stay hidden. Shortly after load, reveal
+    // anything the observer didn't catch.
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            sections.forEach(function(section) {
+                section.classList.add('visible');
+            });
+        }, 1500);
+    });
 }
 
 // Mobile Menu Toggle

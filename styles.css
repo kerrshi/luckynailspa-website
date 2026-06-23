@@ -663,10 +663,16 @@ header.scrolled {
 /* Section Styles */
 section {
     padding: clamp(4.5rem, 10vh, 7rem) 0;
-    opacity: 0;
-    transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     position: relative;
+}
+
+/* Sections are only hidden for the scroll-reveal animation when JS is
+   active to animate them back in. Without JS (or if the observer fails),
+   content stays fully visible — it can never get permanently stuck hidden. */
+.js section {
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 @media (max-width: 968px) {
