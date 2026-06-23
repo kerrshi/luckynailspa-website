@@ -211,7 +211,8 @@ header.scrolled {
     font-size: 1.75rem;
     font-weight: 700;
     font-style: italic;
-    background: var(--gradient-primary);
+    color: #b0715f;
+    background: linear-gradient(135deg, #c58f7b 0%, #b0715f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1020,7 +1021,8 @@ section h2::after {
 .subheading {
     font-size: 1.75rem;
     font-weight: 700;
-    background: var(--gradient-primary);
+    color: #b0715f;
+    background: linear-gradient(135deg, #c58f7b 0%, #b0715f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1339,7 +1341,8 @@ section h2::after {
 .testimonial-author h5 {
     font-size: 1.25rem;
     font-weight: 700;
-    background: var(--gradient-primary);
+    color: #b0715f;
+    background: linear-gradient(135deg, #c58f7b 0%, #b0715f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1703,7 +1706,8 @@ img:not(.loaded):not(.error) {
 .hours-time {
     font-size: 1.75rem;
     font-weight: 700;
-    background: var(--gradient-primary);
+    color: #b0715f;
+    background: linear-gradient(135deg, #c58f7b 0%, #b0715f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -2092,10 +2096,8 @@ footer::before {
 .menu-item-price {
     font-size: 1.5rem;
     font-weight: 700;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary-darker);
+    -webkit-text-fill-color: var(--primary-darker);
     white-space: nowrap;
     margin-left: 1rem;
 }
