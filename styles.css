@@ -375,6 +375,11 @@ header.scrolled {
     transform: scale(1.05);
 }
 
+/* Compact mobile "Book" button — hidden on desktop, shown <=968px */
+.book-mini {
+    display: none;
+}
+
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
@@ -2292,10 +2297,38 @@ footer::before {
         order: -1;
     }
 
+    /* Collapse the secondary actions into the menu so the sticky
+       header stays slim on phones/tablets. Revealed when the menu opens. */
     .header-actions {
-        order: 3;
+        order: 4;
         width: 100%;
         justify-content: flex-start;
+        display: none;
+    }
+
+    header.nav-open .header-actions {
+        display: flex;
+    }
+
+    /* Compact always-visible Book button keeps booking one tap away */
+    .book-mini {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        padding: 0.55rem 1.15rem;
+        background: var(--gradient-primary);
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: var(--border-radius);
+        font-weight: 600;
+        font-size: 0.92rem;
+        min-height: 44px;
+        box-shadow: 0 6px 14px rgba(197, 143, 123, 0.3);
+    }
+
+    .book-mini:hover {
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
     }
 
     .mobile-menu-toggle {
@@ -2305,8 +2338,8 @@ footer::before {
     .main-nav {
         display: none;
         width: 100%;
-        order: 4;
-        background-color: #ffffff;
+        order: 3;
+        background-color: transparent;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
         margin-top: 1rem;
         padding-top: 1rem;

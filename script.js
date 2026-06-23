@@ -106,20 +106,32 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mainNav = document.getElementById('mainNav');
-    
+    const siteHeader = document.querySelector('header');
+
+    const setMenuClosed = () => {
+        mainNav.classList.remove('active');
+        if (siteHeader) siteHeader.classList.remove('nav-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        const spans = mobileMenuToggle.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+    };
+
     if (mobileMenuToggle && mainNav) {
         mobileMenuToggle.addEventListener('click', function() {
-            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-            
-            // Toggle menu visibility
-            mainNav.classList.toggle('active');
-            
+            const willOpen = mobileMenuToggle.getAttribute('aria-expanded') !== 'true';
+
+            // Toggle menu + collapsible header actions
+            mainNav.classList.toggle('active', willOpen);
+            if (siteHeader) siteHeader.classList.toggle('nav-open', willOpen);
+
             // Update aria-expanded attribute
-            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
-            
+            mobileMenuToggle.setAttribute('aria-expanded', willOpen);
+
             // Animate hamburger icon
             const spans = mobileMenuToggle.querySelectorAll('span');
-            if (!isExpanded) {
+            if (willOpen) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
@@ -129,18 +141,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 spans[2].style.transform = 'none';
             }
         });
-        
-        // Close menu when clicking on a link
+
+        // Close menu when clicking on a nav link
         const navLinks = mainNav.querySelectorAll('a');
         navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mainNav.classList.remove('active');
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                const spans = mobileMenuToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            });
+            link.addEventListener('click', setMenuClosed);
         });
     }
     
