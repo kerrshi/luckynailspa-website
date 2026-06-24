@@ -1662,9 +1662,9 @@ img:not(.loaded):not(.error) {
 
 .hours-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
-    max-width: 600px;
+    max-width: 920px;
     margin: 2rem auto;
 }
 
