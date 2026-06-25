@@ -2771,3 +2771,34 @@ footer::before {
     border-color: var(--primary-dark);
     transform: scale(1.08);
 }
+
+/* ── Menu Sheets (responsive image-based menu) ──────── */
+.menu-sheets {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 860px;
+    margin: 2.5rem auto 0;
+}
+
+.menu-sheet {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-soft);
+    background: var(--surface);
+}
+
+.menu-download {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+@media (max-width: 480px) {
+    .menu-sheets {
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+}
